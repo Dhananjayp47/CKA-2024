@@ -1,0 +1,29 @@
+# This is manifest for Deployment resource
+# Deployment is a higher level resource that manages ReplicaSet
+# Deployment is used to manage ReplicaSet and Pods
+# Deployments allow you to roll out updates to your application in a controlled manner.
+# Deployments enable you to roll back to a previous state in case something goes wrong. 
+# Deployments are useful to scale the application up or down.
+# Deployments maintain a history of previous ReplicaSets.
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-deployment
+  labels:
+    app: my-app
+spec:
+ template:
+   metadata:
+     labels:
+       app: my-app
+   spec:
+     containers:
+     - name: my-app
+       image: nginx
+       ports:
+        - containerPort: 80
+ replicas: 3
+ selector:
+    matchLabels:
+      app: my-app
